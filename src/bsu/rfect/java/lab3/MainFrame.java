@@ -31,7 +31,7 @@ public class MainFrame extends JFrame{
                        textFieldStep;
 
     private Box hBoxResult;
-    private DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance();
+    private DecimalFormat formatter = new DecimalFormat("###.#####");
     private GornerTableCellRenderer renderer = new GornerTableCellRenderer();
     private GornerTableModel data;
 
