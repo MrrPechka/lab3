@@ -245,7 +245,7 @@ public class MainFrame extends JFrame{
             }
             out.close();
         } catch(IOException e){
-            System.out.println("Файл не создан");
+            System.out.println("Файл не может быть создан");
         }
     }
 
@@ -269,11 +269,26 @@ public class MainFrame extends JFrame{
             }
             writer.flush();
         } catch(IOException e){
-            System.out.println("Файл не создан");
+            System.out.println("Файл не может быть создан");
         }
     }
 
-
+    private void saveToCSVFile(File selectedFile){
+        try{
+            FileWriter writer = new FileWriter(selectedFile);
+            for(int i = 0; i < data.getRowCount(); i++){
+                for(int j = 0; j < data.getColumnCount(); j++){
+                    writer.write(String.valueOf(formatter.format(data.getValueAt(i, j))));
+                    if(j != 3)
+                        writer.write(", ");
+                }
+                writer.write("\n");
+            }
+            writer.flush();
+        } catch(IOException e){
+            System.out.println("Файл не может быть создан");
+        }
+    }
 
     public static void main(String[] args) {
         if(args.length == 0){
