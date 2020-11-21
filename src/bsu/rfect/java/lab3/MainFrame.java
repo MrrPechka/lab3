@@ -49,7 +49,7 @@ public class MainFrame extends JFrame{
     JMenu referenceMenu = new JMenu("Reference");
     menuBar.add(referenceMenu);
 
-        Action saveToTextAction = new AbstractAction("Save to text file") {
+        Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(fileChooser == null){
@@ -65,7 +65,7 @@ public class MainFrame extends JFrame{
         saveToTextMenuItem = fileMenu.add(saveToTextAction);
         saveToTextMenuItem.setEnabled(false);
 
-        Action saveToGraphicsAction = new AbstractAction("Save data for plotting") {
+        Action saveToGraphicsAction = new AbstractAction("Сохранить данные для построения") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(fileChooser == null){
@@ -80,7 +80,7 @@ public class MainFrame extends JFrame{
         saveToGraphicsMenuItem = fileMenu.add(saveToGraphicsAction);
         saveToGraphicsMenuItem.setEnabled(false);
 
-        Action saveToCSVAction = new AbstractAction("Save to CSV file") {
+        Action saveToCSVAction = new AbstractAction("Сохранение в CSV файл") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(fileChooser == null){
@@ -94,6 +94,21 @@ public class MainFrame extends JFrame{
         };
         saveToCSVMenuItem =fileMenu.add(saveToCSVAction);
         saveToCSVMenuItem.setEnabled(false);
+
+        Action searchValueAction = new AbstractAction("Поиск значения") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String value = JOptionPane.showInputDialog(MainFrame.this, "Введите значение для поиска", "Поиск значения", JOptionPane.QUESTION_MESSAGE);
+                try{
+                    renderer.setWhichSearch(false);
+                    Double num = Double.parseDouble(value);
+                    renderer.setNeedle(value);
+                    getContentPane().repaint();
+                } catch (NumberFormatException | NullPointerException ex){
+                    JOptionPane.showMessageDialog(MainFrame.this,"Неправильный формат вещественного числа", "Неправильный формат числа", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        };
 
     }
 
