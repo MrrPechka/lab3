@@ -31,6 +31,7 @@ public class MainFrame extends JFrame{
     private DecimalFormat formatter = new DecimalFormat("###.#####");
     private GornerTableCellRenderer renderer = new GornerTableCellRenderer();
     private GornerTableModel data;
+    private ImageIO icon = null;
 
     public MainFrame(Double[] coefficients){
     super("Табулирование многочлена на отрезке двумя способами");
@@ -129,7 +130,21 @@ public class MainFrame extends JFrame{
         searchCloseValueMenuItem = tableMenu.add(searchCloseValueAction);
         searchCloseValueMenuItem.setEnabled(false);
 
-
+        Action aboutTheProgramAction = new AbstractAction("О программе") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Image image = ImageIO.read(new File("bsu.rfect.java.lab3/photo.jpg"));
+                    image = image.getScaledInstance(250,250, Image.SCALE_SMOOTH);
+                    icon = new ImageIcon(image);
+                    JOptionPane.showMessageDialog(MainFrame.this, "Гук Анна\n8 группа", "О студенте", JOptionPane.INFORMATION_MESSAGE, icon);
+                } catch(IOException ioException){
+                    ioException.printStackTrace();
+                }
+            }
+        };
+        aboutTheProgramMenuItem = referenceMenu.add(aboutTheProgramAction);
+        aboutTheProgramMenuItem.setEnabled(true);
     }
 
     public static void main(String[] args) {
