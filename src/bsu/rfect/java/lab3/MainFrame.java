@@ -219,6 +219,21 @@ public class MainFrame extends JFrame{
                 getContentPane().validate();
             }
         });
+
+        Box hBoxButtons = Box.createHorizontalBox();
+        hBoxButtons.setBorder(BorderFactory.createBevelBorder(1));
+        hBoxButtons.add(Box.createVerticalGlue());
+        hBoxButtons.add(buttonCalc);
+        hBoxButtons.add(Box.createHorizontalStrut(50));
+        hBoxButtons.add(buttonReset);
+        hBoxButtons.add(Box.createHorizontalGlue());
+        hBoxButtons.setPreferredSize(new Dimension((new Double(hBoxButtons.getMaximumSize().getWidth()).intValue(), new Double(hBoxButtons.getMinimumSize().getHeight()).intValue() * 2));
+        hBoxButtons.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
+        getContentPane().add(hBoxButtons,BorderLayout.SOUTH);
+        hBoxResult = Box.createHorizontalBox();
+        hBoxResult.add(new JPanel());
+        hBoxResult.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
+        getContentPane().add(hBoxResult, BorderLayout.CENTER);
     }
     public static void main(String[] args) {
         if(args.length == 0){
