@@ -145,8 +145,37 @@ public class MainFrame extends JFrame{
         };
         aboutTheProgramMenuItem = referenceMenu.add(aboutTheProgramAction);
         aboutTheProgramMenuItem.setEnabled(true);
-    }
 
+        JLabel labelForFrom = new JLabel("X варьируется от:");
+        textFieldFrom = new JTextField("0.0", 10);
+        textFieldFrom.setMaximumSize(textFieldFrom.getPreferredSize());
+        JLabel labelForTo = new JLabel("to:");
+        textFieldTo = new JTextField("4.0", 10);
+        textFieldTo.setMaximumSize(textFieldFrom.getPreferredSize());
+        JLabel labelForStep = new JLabel("с шагом:");
+        textFieldStep = new JTextField("0.1", 10);
+        textFieldStep.setMaximumSize(textFieldFrom.getPreferredSize());
+
+        Box hBoxRange = Box.createHorizontalBox();
+        hBoxRange.setBorder(BorderFactory.createBevelBorder(1));
+        hBoxRange.add(Box.createHorizontalStrut(10));
+        hBoxRange.add(labelForFrom);
+        hBoxRange.add(Box.createHorizontalStrut(10));
+        hBoxRange.add(textFieldFrom);
+        hBoxRange.add(Box.createVerticalGlue());
+        hBoxRange.add(labelForTo);
+        hBoxRange.add(Box.createHorizontalStrut(10));
+        hBoxRange.add(textFieldTo);
+        hBoxRange.add(Box.createVerticalGlue());
+        hBoxRange.add(labelForStep);
+        hBoxRange.add(Box.createHorizontalStrut(10));
+        hBoxRange.add(textFieldStep);
+        hBoxRange.add(Box.createHorizontalStrut(10));
+        hBoxRange.setPreferredSize(new Dimension(new Double(hBoxRange.getMaximumSize().getWidth()).intValue(), new Double(hBoxRange.getMinimumSize().getHeight()).intValue() * 2));
+        hBoxRange.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
+        getContentPane().add(hBoxRange, BorderLayout.NORTH);
+
+    }
     public static void main(String[] args) {
         if(args.length == 0){
             System.out.println("Невозможно табулировать полином, для которого не указан коэффициент!");
