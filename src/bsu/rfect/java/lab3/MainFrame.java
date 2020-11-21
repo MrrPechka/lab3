@@ -201,6 +201,24 @@ public class MainFrame extends JFrame{
             }
         });
 
+        JButton buttonReset = new JButton("Очистить");
+        buttonReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textFieldFrom.setText("0.0");
+                textFieldTo.setText("4.0");
+                textFieldStep.setText("0.1");
+                hBoxResult.removeAll();
+                hBoxResult.add(new JPanel());
+                saveToTextMenuItem.setEnabled(false);
+                saveToGraphicsMenuItem.setEnabled(false);
+                saveToCSVMenuItem.setEnabled(false);
+                searchValueMenuItem.setEnabled(false);
+                searchCloseValueMenuItem.setEnabled(false);
+                renderer.setNeedle(null);
+                getContentPane().validate();
+            }
+        });
     }
     public static void main(String[] args) {
         if(args.length == 0){
