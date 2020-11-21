@@ -175,6 +175,32 @@ public class MainFrame extends JFrame{
         hBoxRange.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
         getContentPane().add(hBoxRange, BorderLayout.NORTH);
 
+        JButton buttonCalc = new JButton("Вычислить");
+        buttonCalc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    Double from = Double.parseDouble(textFieldFrom.getText()),
+                           to = Double.parseDouble(textFieldTo.getText()),
+                           step = Double.parseDouble(textFieldStep.getText());
+                    data = new GornerTableModel(from, to, step, MainFrame.this.coefficients);
+                    JTable table = new JTable(data);
+                    table.setDefaultRenderer(Double.class,renderer);
+                    table.setRowHeight(30);
+                    hBoxResult.removeAll();
+                    renderer.setNeedle(null);
+                    hBoxResult.add(new JScrollPane(table));
+                    getContentPane().validate();
+                    saveToTextMenuItem.setEnabled(true);
+                    saveToGraphicsMenuItem.setEnabled(true);
+                    saveToCSVMenuItem.setEnabled(true);
+                    searchValueMenuItem.setEnabled(true);
+                } catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(MainFrame.this, "Неправильный формат вещественного числа", "Неправильный формат числа", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
     }
     public static void main(String[] args) {
         if(args.length == 0){
