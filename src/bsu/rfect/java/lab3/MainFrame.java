@@ -40,6 +40,22 @@ public class MainFrame extends JFrame{
     }
 
     public static void main(String[] args) {
+        if(args.length == 0){
+            System.out.println("Невозможно табулировать полином, для которого не указан коэффициент!");
+            System.exit(-1);
+        }
 
+        Double[] coefficients = new Double[args.length];
+        int i = 0;
+        try{
+            for(String arg : args)
+                coefficients[i++] = Double.parseDouble(arg);
+        } catch (NumberFormatException e){
+            System.out.println("Ошибка конвертирования строки '" + args[i] + "' в Double");
+            System.exit(-2);
+        }
+        MainFrame frame = new MainFrame(coefficients);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
