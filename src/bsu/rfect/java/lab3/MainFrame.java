@@ -235,6 +235,46 @@ public class MainFrame extends JFrame{
         hBoxResult.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
         getContentPane().add(hBoxResult, BorderLayout.CENTER);
     }
+
+    private  void saveToGraphicsFile(File selectedFile){
+        try{
+            DataOutputStream out = new DataOutputStream(new FileOutputStream(selectedFile));
+            for(int i = 0; i < data.getRowCount(); i++){
+                for(int j = 0; j < data.getColumnCount(); j++)
+                    out.writeDouble((Double)data.getValueAt(i, j));
+            }
+            out.close();
+        } catch(IOException e){
+            System.out.println("Файл не создан");
+        }
+    }
+
+    private void saveToTextFile(File selectedFile){
+        try{
+            FileWriter writer = new FileWriter(selectedFile);
+            for(int i = 0; i < data.getColumnCount(); i++){
+                writer.write(data.getColumnName(i));
+                writer.write("\t|\t");
+            }
+            writer.write("\n___________________________________________________________" +
+                             "______________________________________________________________\n");
+            for(int i = 0; i < data.getRowCount(); i++){
+                for(int j = 0; j < data.getColumnCount(); j++){
+                    writer.write(String.valueOf(formatter.format(data.getValueAt(i, j))));
+                    int a = formatter.format(data.getValueAt(i, j)).toString().length();
+                    for(int l = 1; l < (30 - a); l++)
+                        writer.write(" ");
+                }
+                writer.write("\n");
+            }
+            writer.flush();
+        } catch(IOException e){
+            System.out.println("Файл не создан");
+        }
+    }
+
+
+
     public static void main(String[] args) {
         if(args.length == 0){
             System.out.println("Невозможно табулировать полином, для которого не указан коэффициент!");
