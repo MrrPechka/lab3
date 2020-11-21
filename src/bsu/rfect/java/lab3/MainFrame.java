@@ -109,6 +109,26 @@ public class MainFrame extends JFrame{
                 }
             }
         };
+        searchCloseValueMenuItem = tableMenu.add(searchValueAction);
+        searchCloseValueMenuItem.setEnabled(false);
+
+        Action searchCloseValueAction = new AbstractAction("Найти близкое к простому") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String value = JOptionPane.showInputDialog(MainFrame.this, "Введите простое значение для поиска", "Искать близкое значение", JOptionPane.QUESTION_MESSAGE);
+                try{
+                    renderer.setWhichSearch(true);
+                    Double num = Double.parseDouble(value);
+                    renderer.setNeedle(value);
+                    getContentPane().repaint();
+                }catch(NumberFormatException | NullPointerException ex){
+                    JOptionPane.showMessageDialog(MainFrame.this, "Неправильный формат вещественного числа", "Неправильный формат числа", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        };
+        searchCloseValueMenuItem = tableMenu.add(searchCloseValueAction);
+        searchCloseValueMenuItem.setEnabled(false);
+
 
     }
 
