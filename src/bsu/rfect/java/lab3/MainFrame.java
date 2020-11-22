@@ -31,7 +31,7 @@ public class MainFrame extends JFrame{
     private DecimalFormat formatter = new DecimalFormat("###.#####");
     private GornerTableCellRenderer renderer = new GornerTableCellRenderer();
     private GornerTableModel data;
-    private ImageIO icon = null;
+    private ImageIcon icon = null;
 
     public MainFrame(Double[] coefficients){
     super("Табулирование многочлена на отрезке двумя способами");
@@ -134,7 +134,7 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Image image = ImageIO.read(new File("bsu.rfect.java.lab3/photo.jpg"));
+                    Image image = ImageIO.read(new File("src/bsu/rfect/java/lab3/photo.jpg"));
                     image = image.getScaledInstance(250,250, Image.SCALE_SMOOTH);
                     icon = new ImageIcon(image);
                     JOptionPane.showMessageDialog(MainFrame.this, "Гук Анна\n8 группа", "О студенте", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -195,6 +195,7 @@ public class MainFrame extends JFrame{
                     saveToGraphicsMenuItem.setEnabled(true);
                     saveToCSVMenuItem.setEnabled(true);
                     searchValueMenuItem.setEnabled(true);
+                    searchCloseValueMenuItem.setEnabled(true);
                 } catch(NumberFormatException ex){
                     JOptionPane.showMessageDialog(MainFrame.this, "Неправильный формат вещественного числа", "Неправильный формат числа", JOptionPane.WARNING_MESSAGE);
                 }
@@ -227,7 +228,7 @@ public class MainFrame extends JFrame{
         hBoxButtons.add(Box.createHorizontalStrut(50));
         hBoxButtons.add(buttonReset);
         hBoxButtons.add(Box.createHorizontalGlue());
-        hBoxButtons.setPreferredSize(new Dimension((new Double(hBoxButtons.getMaximumSize().getWidth()).intValue(), new Double(hBoxButtons.getMinimumSize().getHeight()).intValue() * 2));
+        hBoxButtons.setPreferredSize(new Dimension(new Double(hBoxButtons.getMaximumSize().getWidth()).intValue(), new Double(hBoxButtons.getMinimumSize().getHeight()).intValue() * 2));
         hBoxButtons.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
         getContentPane().add(hBoxButtons,BorderLayout.SOUTH);
         hBoxResult = Box.createHorizontalBox();
