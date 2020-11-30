@@ -43,11 +43,11 @@ public class MainFrame extends JFrame{
 
     JMenuBar menuBar = new JMenuBar();
     setJMenuBar(menuBar);
-    JMenu fileMenu = new JMenu("File");
+    JMenu fileMenu = new JMenu("Файл");
     menuBar.add(fileMenu);
-    JMenu tableMenu = new JMenu("Table");
+    JMenu tableMenu = new JMenu("Таблица");
     menuBar.add(tableMenu);
-    JMenu referenceMenu = new JMenu("Reference");
+    JMenu referenceMenu = new JMenu("Справка");
     menuBar.add(referenceMenu);
 
         Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
@@ -110,8 +110,8 @@ public class MainFrame extends JFrame{
                 }
             }
         };
-        searchCloseValueMenuItem = tableMenu.add(searchValueAction);
-        searchCloseValueMenuItem.setEnabled(false);
+        searchValueMenuItem = tableMenu.add(searchValueAction);
+        searchValueMenuItem.setEnabled(false);
 
         Action searchCloseValueAction = new AbstractAction("Найти близкое к простому") {
             @Override
@@ -149,7 +149,7 @@ public class MainFrame extends JFrame{
         JLabel labelForFrom = new JLabel("X варьируется от:");
         textFieldFrom = new JTextField("0.0", 10);
         textFieldFrom.setMaximumSize(textFieldFrom.getPreferredSize());
-        JLabel labelForTo = new JLabel("to:");
+        JLabel labelForTo = new JLabel("до:");
         textFieldTo = new JTextField("4.0", 10);
         textFieldTo.setMaximumSize(textFieldFrom.getPreferredSize());
         JLabel labelForStep = new JLabel("с шагом:");

@@ -6,6 +6,7 @@ import static java.lang.Math.*;
 public class GornerTableModel extends AbstractTableModel{
     private Double[] coefficients;
     private Double from, to, step;
+    private double result[] = new double[3];
 
     public GornerTableModel(Double from, Double to, Double step, Double[] coefficients){
         this.from = from;
@@ -40,29 +41,26 @@ public class GornerTableModel extends AbstractTableModel{
 
     public Object getValueAt(int rowIndex, int columnIndex){
         double x = from + step * rowIndex;
-
-        if(columnIndex == 0)
-            return x;
-
-        if(columnIndex == 1){
-            Double result = 0.;
-            for(Double a : coefficients)
-                result = result * x + a;
-            return result;
-        }
-
-        if(columnIndex == 2){
-            Double result = 0.;
-            for( Double a : coefficients)
-                result += pow(x, a);
-            return result;
-        } else {
-            Double result1 = 0., result2 = 0.;
-            for(Double a : coefficients)
-                result1 = result1 * x + a;
-            for(Double a : coefficients)
-                result2 += pow(x, a);
-            return result1 - result2;
+        switch (columnIndex) {
+            case 0:
+                return x;
+            case 1: {
+                result[0] = 0.0;
+                for (int i = 0; i < coefficients.length; i++) {
+                    result[0] += Math.pow(x, coefficients.length - 1 - i) * coefficients[i];
+                }
+                return result[0];
+            }
+            case 2: {
+                result[1] = 0.0;
+                int p = coefficients.length - 1;
+                for (int i = 0; i < coefficients.length; i++) {
+                    result[1] += Math.pow(x, coefficients.length - 1 - i) * coefficients[p--];
+                }
+                return result[1];
+            }
+            default:
+                return result[2] = result[1] - result[0];
         }
     }
 }
